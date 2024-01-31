@@ -11,21 +11,26 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/images")
 public class ImageController {
+    @Autowired
+    ImageService imageServiceObj;
 
     @PostMapping("/{blogId}/add-image")
     public ResponseEntity<String> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
         // Add image into the give blog
+        imageServiceObj.addImage(blogId, description, dimensions);
         return new ResponseEntity<>("Added image successfully", HttpStatus.OK);
     }
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")
     public ResponseEntity<Integer> countImagesInScreen(@PathVariable int id, @PathVariable String screenDimensions){
+        Integer count = imageServiceObj.countImagesInScreen(id, screenDimensions);
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteImage(@PathVariable int id) {
         // delete image using deleteById
+        imageServiceObj.deleteImage(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
