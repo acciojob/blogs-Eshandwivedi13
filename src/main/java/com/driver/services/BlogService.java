@@ -37,8 +37,8 @@ public class BlogService {
         user.getBlogList().add(blogEntityObj);//no need to set, just add and save any 1thing
 
         //save parent or child other automatically save ho jata
-        Blog blog = blogRepository1.save(blogEntityObj);
-        return blog;
+         userRepository1.save(user);
+        return blogEntityObj;
 
     }
 

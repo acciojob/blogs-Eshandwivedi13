@@ -31,27 +31,27 @@ public class ImageService {
         blog.getImageList().add(imageEntityObj);
 
         //save anyone
-        Image image = imageRepository2.save(imageEntityObj);
-        return image;
+        blogRepository2.save(blog);
+        return imageEntityObj;
     }
 
     public void deleteImage(Integer id){
         imageRepository2.deleteById(id);
     }
 
-    public int countImagesInScreen(Integer id, String screenDimensions) {//image id, screenSize
+    public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-
+        //is image id se image get karke dimension get karke aur kitni same dimensionImages can fit screenSize
         Image image = imageRepository2.findById(id).get();
         String[] imageDim = image.getDimensions().split("X");
-        int imageWidth = Integer.parseInt(imageDim[0]);
-        int imageHeight = Integer.parseInt(imageDim[1]);
+        int imageWidth = Integer.parseInt(imageDim[0]);//X ke pehle
+        int imageHeight = Integer.parseInt(imageDim[1]);//X ke baad
 
         String[] screenDim = screenDimensions.split("X");
         int screenWidth = Integer.parseInt(screenDim[0]);
         int screenHeight = Integer.parseInt(screenDim[1]);
 
-        int numOfImages = (screenWidth / imageWidth) * (screenHeight / imageHeight);
+        int numOfImages = (screenWidth / imageWidth) * (screenHeight / imageHeight);//
         return numOfImages;
     }
 }
