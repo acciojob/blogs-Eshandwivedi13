@@ -28,8 +28,8 @@ public class BlogService {
 
         // createBlog Entity
         Blog blogEntityObj = new Blog(title, content);
-        //Copied wala ->
-        blogEntityObj.setPubDate(Calendar.getInstance().getTime());
+        //Copied wala -> .getInstance se calenderObj milta aur .getTime se dateObj
+        blogEntityObj.setPubDate(Calendar.getInstance().getTime());//had to set it manually, @CreationTimestamp not working bruh
 
 
         //set parent in child, and update childList in parent
