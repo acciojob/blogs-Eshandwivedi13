@@ -9,10 +9,7 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BlogService {
@@ -30,14 +27,20 @@ public class BlogService {
         User user = optUser.get();
 
         // createBlog Entity
-        Blog blogEntityObj = new Blog(title, content);
+//        Blog blogEntityObj = new Blog(title, content);
+
+        Blog blogEntityObj=new Blog();
+        blogEntityObj.setTitle(title);
+        blogEntityObj.setContent(content);
+        blogEntityObj.setPubDate(Calendar.getInstance().getTime());
+
 
         //set parent in child, and update childList in parent
         blogEntityObj.setUser(user);
         user.getBlogList().add(blogEntityObj);//no need to set, just add and save any 1thing
 
         //save parent or child other automatically save ho jata
-         blogRepository1.save(blogEntityObj);//basically ek ko karna padta but for passing testCases
+//         blogRepository1.save(blogEntityObj);//basically ek ko karna padta but for passing testCases
          userRepository1.save(user);
         return blogEntityObj;
 
