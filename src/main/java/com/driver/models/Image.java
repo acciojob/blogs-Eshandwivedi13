@@ -8,6 +8,14 @@ public  class Image{
     private String description;
     private String dimensions;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @ManyToOne
     @JoinColumn
     private Blog blog;
