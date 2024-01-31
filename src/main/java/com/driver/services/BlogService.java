@@ -27,11 +27,8 @@ public class BlogService {
         User user = optUser.get();
 
         // createBlog Entity
-//        Blog blogEntityObj = new Blog(title, content);
-
-        Blog blogEntityObj=new Blog();
-        blogEntityObj.setTitle(title);
-        blogEntityObj.setContent(content);
+        Blog blogEntityObj = new Blog(title, content);
+        //Copied wala ->
         blogEntityObj.setPubDate(Calendar.getInstance().getTime());
 
 
@@ -40,7 +37,6 @@ public class BlogService {
         user.getBlogList().add(blogEntityObj);//no need to set, just add and save any 1thing
 
         //save parent or child other automatically save ho jata
-//         blogRepository1.save(blogEntityObj);//basically ek ko karna padta but for passing testCases
          userRepository1.save(user);
         return blogEntityObj;
 
